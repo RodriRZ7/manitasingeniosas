@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contáctanos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f06, #4a90e2);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .contact-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        input, textarea {
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+            font-size: 1em;
+        }
+
+        input[type="submit"] {
+            background-color: #f06;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #e14e67;
+        }
+
+        input, textarea {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        textarea {
+            resize: none;
+            height: 150px;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-container">
+        <h1>MANITAS INGENIOSAS</h1>
+        <h2>Contactanos</h2>
+        <p>Nos encantaría saber que manualidaes deseas podemos hacer a pedidos y mucho mas . 
+            Completa el siguiente formulario y te responderemos a la brevedad.</p>
+        <form action="#" method="POST">
+            <input type="text" name="nombre" placeholder="Tu nombre" required>
+            <input type="text" name="celular" placeholder="Tu celular" required>
+            <input type="email" name="email" placeholder="Tu correo electrónico" required>
+            <textarea name="mensaje" placeholder="Escribe tu mensaje..." required></textarea>
+            <input type="submit" value="Enviar">
+        </form>
+        <footer>&copy; 2024 Manitas Ingeniosas. Todos los derechos reservados.</footer>
+    </div>
+</body>
+</html>

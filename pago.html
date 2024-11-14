@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Pago y Contacto</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .qr-code {
+            margin: 20px auto;
+            transition: transform 0.3s;
+        }
+
+        .qr-code:hover {
+            transform: scale(1.1);
+        }
+
+        p {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        .whatsapp {
+            margin-top: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #25D366;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        a:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Paga Aquí</h1>
+    <div class="qr-code">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://tu-enlace-de-pago.com&size=200x200" alt="Código QR para pagar">
+    </div>
+    
+    <p>Escanea el código QR para realizar el pago.</p>
+    
+    <div class="whatsapp">
+        <p>¿Tienes preguntas? O Donde enviamos los productos<br> Contáctanos por WhatsApp:</p><br><br>
+        <a href="https://wa.me/+59161919294" target="_blank">Enviar WhatsApp</a>
+    </div>
+
+</body>
+</html>

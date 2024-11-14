@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manitas Ingeniosas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif; 
+            background:linear-gradient(
+            90deg,
+            rgba(131,45,153,1)33%,
+            rgba(193,58,143,1)69%,
+            rgba(196,37,116,1)100%
+            );
+    
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+            animation: slideDown 1s ease-out;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .nav-links a {
+            margin: 0 15px;
+            font-size: 18px;
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ffd89b;
+        }
+
+        .header-content {
+            text-align: center;
+            padding: 100px 0;
+            animation: fadeIn 1s;
+        }
+
+        .header-content h1 {
+            font-size: 64px;
+            color: #fff;
+            margin-bottom: 20px;
+            animation: fadeIn 2s;
+        }
+
+        .header-content p {
+            font-size: 20px;
+            color: #ffecdf;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #ff6f61;
+            color: #fff;
+            border-radius: 30px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ff4b2b;
+        }
+
+        .btn-bounce {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .features, .about, .history, .team, .testimonials, .faq, .cta-section, .gallery {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            background:linear-gradient(
+            90deg,
+            rgba(131,45,153,1)33%,
+            rgba(193,58,143,1)69%,
+            rgba(196,37,116,1)100%
+            );
+        }
+
+        .feature-box {
+            width: 280px;
+            padding: 40px;
+            background:linear-gradient(
+            90deg,
+            rgba(131,45,153,1)33%,
+            rgba(193,58,143,1)69%,
+            rgba(196,37,116,1)100%
+            );
+            border-radius: 15px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .feature-box:hover {
+            transform: scale(1.05);
+        }
+
+        .feature-box img {
+            width: 180px;
+            margin-bottom: 60px;
+        }
+
+        .feature-box h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #ff6f61;
+        }
+
+        .about, .history {
+            background: linear-gradient(45deg, #ff6f61, #ff9a85);
+            color: #fff;
+            border-radius: 50px;
+            padding: 60px 50px;
+        }
+
+        .about p, .history p {
+            max-width: 800px;
+            margin: 20px auto;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .team {
+            background:linear-gradient(
+            90deg,
+            rgba(131,45,153,1)33%,
+            rgba(193,58,143,1)69%,
+            rgba(196,37,116,1)100%
+            );
+        }
+
+        .team h2 {
+            color: #ff6f61;
+        }
+
+        .team-members {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding-top: 20px;
+        }
+
+        .team-member {
+            text-align: center;
+            max-width: 250px;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .team-member:hover img {
+            transform: scale(1.1);
+        }
+
+        .testimonials {
+            background:linear-gradient(
+            90deg,
+            rgba(131,45,153,1)33%,
+            rgba(193,58,143,1)69%,
+            rgba(196,37,116,1)100%
+            );
+        }
+
+        .testimonial {
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 20px;
+            background:linear-gradient(
+            90deg,
+            rgba(131,45,153,1)33%,
+            rgba(193,58,143,1)69%,
+            rgba(196,37,116,1)100%
+            );
+            border-radius: 15px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .testimonial:before {
+            content: "“";
+            font-size: 50px;
+            color: #ff6f61;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+        }
+
+        .faq {
+            background:linear-gradient(
+            90deg,
+            rgba(131,45,153,1)33%,
+            rgba(193,58,143,1)69%,
+            rgba(196,37,116,1)100%
+            );
+        }
+
+        .faq h2 {
+            color: #ff6f61;
+            margin-bottom: 20px;
+        }
+
+        .faq-item {
+            background:linear-gradient(
+            90deg,
+            rgba(131,45,153,1)33%,
+            rgba(193,58,143,1)69%,
+            rgba(196,37,116,1)100%
+            );
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .cta-section {
+            background: linear-gradient(45deg, #ff6f61, #ff9a85);
+            color: #fff;
+            border-radius: 20px;
+            padding: 80px 20px;
+            animation: fadeIn 2s;
+        }
+
+        .cta-section h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding-top: 20px;
+        }
+
+        .gallery img {
+            width: 30%;
+            border-radius: 15px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+        }
+        .logui {
+            width: 200px; /* Ajusta el tamaño */
+            height: 200px; /* Ajusta el tamaño */
+            border-radius: 50%; /* Esto hará que la imagen sea redonda */
+            object-fit: cover; /* Esto asegura que la imagen mantenga sus proporciones */
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="images/LOGOO.jpg" alt="" class="logui">
+        <div class="logo">MANITAS INGENIOSAS</div><hr>
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="tienda.html">Mas Productos</a>
+            <a href="contactanos.html">Contactanos</a>
+            <a href="cliente.html">Registrate</a>
+            <a href="admin.html">Administrador</a>
+            
+        </div>
+    </header>
+
+    <div class="header-content">
+        <h1>BIENVENIDO A MANITAS INGENIOSAS</h1>
+        <p>Descubre una amplia gama de manualidades en goma EVA para todas las edades. Inspira tu creatividad y aprende con nosotros.</p>
+        <a href="#about" class="btn btn-bounce">Conoce más</a>
+    </div>
+
+    <section class="features" id="features">
+        <div class="feature-box">
+            <img src="images/mn13.jpg" alt="Calidad">
+            <h3>Calidad Superior</h3>
+            <p>Utilizamos los mejores materiales para que tu experiencia sea increíble.</p>
+        </div>
+        <div class="feature-box">
+            <img src="images/mn3.jpg" alt="Creatividad">
+            <h3>Creatividad sin Límites</h3>
+            <p>Nos encanta innovar, creando productos que despiertan la imaginación.</p>
+        </div>
+        <div class="feature-box">
+            <img src="images/mn1.jpg" alt="Facilidad">
+            <h3>Fácil de Usar</h3>
+            <p>Todos nuestros productos son sencillos y divertidos de usar, aptos para todas las edades.</p>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <h2>¿Quiénes Somos?</h2>
+        <p>Manitas Ingeniosas es un emprendimiento creado por apasionados de las manualidades y la creatividad. Nos dedicamos a ofrecer productos innovadores en goma EVA, que permiten aprender de una forma divertida, práctica y estimulante.</p>
+    </section>
+
+    <section class="history" id="history">
+        <h2>Nuestra Historia</h2>
+        <p>Desde nuestros inicios en el 2024, nuestro objetivo ha sido proporcionar materiales que inspiren creatividad en niños, jóvenes y adultos. Creemos que las manualidades no solo son una actividad recreativa, sino una herramienta educativa poderosa.</p>
+    </section>
+
+    <section class="team" id="team">
+        <h2>Conoce a Nuestro Equipo</h2>
+        <div class="team-members">
+            <div class="team-member">
+                <img src="images/rodrigo.jpeg" alt="Rodrigo">
+                <h3>Rodrigo Ronald</h3>
+                <p>Especialista en Desarrollo Web</p>
+            </div>
+            <div class="team-member">
+                <img src="images/sandra.jpeg" alt="Sandra">
+                <h3>Sandra Condori</h3>
+                <p>Especialista en Manualidades</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <h2>Testimonios de Clientes</h2>
+        <div class="testimonial">
+            <p>“Manitas Ingeniosas tiene productos excelentes que facilitan el aprendizaje creativo. A mis hijos les encanta y se han vuelto más creativos.”</p>
+        </div>
+        <div class="testimonial">
+            <p>“Los kits de manualidades son hermosos y bien diseñados. Me ha encantado descubrir esta tienda.”</p>
+        </div>
+    </section>
+
+    <section class="faq" id="faq">
+        <h2>Preguntas Frecuentes</h2>
+        <div class="faq-item">
+            <h3>¿Qué es el goma EVA?</h3>
+            <p>Es un material flexible y duradero, ideal para hacer manualidades y proyectos creativos.</p>
+        </div>
+        <div class="faq-item">
+            <h3>¿Los productos son aptos para todas las edades?</h3>
+            <p>Sí, nuestros productos están diseñados para ser fáciles de usar tanto por niños como adultos.</p>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <h2>Únete a Nuestra Comunidad Creativa</h2>
+        <p>Descubre, crea y comparte con otros amantes de las manualidades. ¡Únete a nosotros y empieza tu viaje creativo hoy!</p>
+        <a href="#" class="btn">Regístrate Ahora</a>
+    </section>
+
+    <section class="gallery" id="gallery">
+        <img src="images/mn14.jpeg" alt="Galería 1">
+        <img src="images/mn15.jpeg" alt="Galería 2">
+        <img src="images/mn16.jpeg" alt="Galería 3">
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Manitas Ingeniosas. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
+

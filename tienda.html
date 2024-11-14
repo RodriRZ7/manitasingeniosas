@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Productos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background:linear-gradient(
+            90deg,
+            rgba(131,45,153,1)33%,
+            rgba(193,58,143,1)69%,
+            rgba(196,37,116,1)100%
+            );
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background:linear-gradient(
+            90deg,
+            rgba(131,45,153,1)33%,
+            rgba(193,58,143,1)69%,
+            rgba(196,37,116,1)100%
+            );
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 40px;
+            font-weight: 700;
+            color: #e45d34;
+        }
+
+        header p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .productos {
+            display: flex;
+            overflow-x: auto;
+            padding: 20px 0;
+            gap: 20px;
+        }
+
+        .producto {
+            background:linear-gradient(
+            45deg,
+            rgba(61, 48, 162)33%,
+            rgba(163, 249, 79)69%,
+            rgba(61, 48, 162)100%
+            );
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            flex: 0 0 auto;
+            width: 250px;
+            transition: transform 0.3s ease;
+        }
+
+        .producto:hover {
+            transform: scale(1.05);
+        }
+
+        .producto img {
+            width: 60%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #e45d34;
+        }
+
+        .producto h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .producto p {
+            font-size: 18px;
+            font-weight: 600;
+            color: #e45d34;
+            margin-bottom: 10px;
+        }
+
+        .producto .cantidad-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px; /* Aumentado para separar el número y el slider */
+            margin: 10px 0;
+        }
+
+        .producto button, .producto input {
+            padding: 10px 20px;
+            background-color: #61bc00;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .producto button:hover {
+            background-color: #4e9600;
+        }
+
+        .producto input {
+            width: 60px;
+            text-align: center;
+            margin: 0;
+        }
+
+        .ver-mas {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #e45d34;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .ver-mas:hover {
+            background-color: #b43d29;
+        }
+
+        .productos-adicionales {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .productos-adicionales.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            border-radius: 10px;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+
+        #carrito {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #e45d34;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #carrito:hover {
+            background-color: #b43d29;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            color: #e45d34;
+        }
+
+        .modal-close {
+            cursor: pointer;
+            font-size: 24px;
+            color: #e45d34;
+        }
+
+        .modal-body {
+            margin-top: 10px;
+        }
+
+        .modal-body table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .modal-body table th, .modal-body table td {
+            padding: 10px;
+            border: 1px solid #e45d34;
+            text-align: center;
+        }
+
+        .modal-body table th {
+            background-color: #f2f2f2;
+        }
+        .cc {
+            background-color: #07e861;
+            color: rgb(17, 4, 4);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+        }
+
+        .vaciar-carrito {
+            background-color: #d9534f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+        }
+
+        .vaciar-carrito:hover {
+            background-color: #c9302c;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>MANITAS INGENIOSAS</h1>
+        <p>Descubre productos únicos hechos a mano</p>
+        <div id="carrito">Ver Carrito (<span id="total-items">0</span>)<hr><hr><br><img src="images/car.svg"></div>
+    </header>
+
+    <div class="container">
+        
+        <div class="productos" id="productos">
+            <div class="producto">
+                <img src="images/mn1.jpg" alt="Producto 1">
+                <h3>Producto 1</h3>
+                <p>10 BS
+                </p>
+                <div class="cantidad-container">
+                    <input type="number" value="1" min="1" class="cantidad" data-id="1">
+                    <button class="agregar-carrito" data-id="1">Agregar al Carrito</button>
+                </div>
+            </div>
+            <div class="producto">
+                <img src="images/mn5.jpg" alt="Producto 2">
+                <h3>Producto 2</h3>
+                <p>10 BS</p>
+                <div class="cantidad-container">
+                    <input type="number" value="1" min="1" class="cantidad" data-id="2">
+                    <button class="agregar-carrito" data-id="2">Agregar al Carrito</button>
+                </div>
+            </div>
+            <div class="producto">
+                <img src="images/mn6.jpg" alt="Producto 3">
+                <h3>Producto 3</h3>
+                <p>10 BS</p>
+                <div class="cantidad-container">
+                    <input type="number" value="1" min="1" class="cantidad" data-id="3">
+                    <button class="agregar-carrito" data-id="3">Agregar al Carrito</button>
+                </div>
+            </div>
+            <div class="producto">
+                <img src="images/mn7.jpg" alt="Producto 4">
+                <h3>Producto 4</h3>
+                <p>20 BS</p>
+                <div class="cantidad-container">
+                    <input type="number" value="1" min="1" class="cantidad" data-id="4">
+                    <button class="agregar-carrito" data-id="4">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <button class="ver-mas" id="ver-mas">Ver Más Productos</button>
+
+        <div class="productos-adicionales" id="productos-adicionales">
+            <div class="producto">
+                <img src="images/mn8.jpg" alt="Producto 5">
+                <h3>Producto 5</h3>
+                <p>10 BS</p>
+                <div class="cantidad-container">
+                    <input type="number" value="1" min="1" class="cantidad" data-id="5">
+                    <button class="agregar-carrito" data-id="5">Agregar al Carrito</button>
+                </div>
+            </div>
+            <div class="producto">
+                <img src="images/mn9.jpg" alt="Producto 6">
+                <h3>Producto 6</h3>
+                <p>10 BS</p>
+                <div class="cantidad-container">
+                    <input type="number" value="1" min="1" class="cantidad" data-id="6">
+                    <button class="agregar-carrito" data-id="6">Agregar al Carrito</button>
+                </div>
+            </div>
+            <div class="producto">
+                <img src="images/mn10.jpg" alt="Producto 7">
+                <h3>Producto 7</h3>
+                <p>10 BS</p>
+                <div class="cantidad-container">
+                    <input type="number" value="1" min="1" class="cantidad" data-id="7">
+                    <button class="agregar-carrito" data-id="7">Agregar al Carrito</button>
+                </div>
+            </div>
+            <div class="producto">
+                <img src="images/mn11.jpg" alt="Producto 8">
+                <h3>Producto 8</h3>
+                <p>10 BS</p>
+                <div class="cantidad-container">
+                    <input type="number" value="1" min="1" class="cantidad" data-id="8">
+                    <button class="agregar-carrito" data-id="8">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="modal-carrito">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Carrito</h2>
+                    <span class="modal-close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Producto</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lista-carrito">
+                            <tr>
+                                <td colspan="5">No hay productos en el carrito.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="vaciar-carrito" id="vaciar-carrito">Vaciar Carrito</button>
+                    <center>
+                    <a class="cc" href="pago.html">Comprar</a>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; MANITAS INGENIOSAS. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const carrito = [];
+        const totalItemsElement = document.getElementById('total-items');
+        const productosContainer = document.getElementById('productos');
+        const productosAdicionales = document.getElementById('productos-adicionales');
+        let mostrarMas = false;
+
+        document.querySelectorAll('.agregar-carrito').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const productoId = e.target.dataset.id;
+                const cantidadInput = document.querySelector(`.cantidad[data-id="${productoId}"]`);
+                const cantidad = parseInt(cantidadInput.value);
+
+                const producto = {
+                    id: productoId,
+                    nombre: e.target.parentElement.parentElement.querySelector('h3').innerText,
+                    precio: parseFloat(e.target.parentElement.parentElement.querySelector('p').innerText.replace('$', '')),
+                    cantidad: cantidad,
+                    imagen: e.target.parentElement.parentElement.querySelector('img').src // Captura la imagen
+                };
+
+                const index = carrito.findIndex(item => item.id === productoId);
+                if (index > -1) {
+                    carrito[index].cantidad += cantidad;
+                } else {
+                    carrito.push(producto);
+                }
+
+                actualizarCarrito();
+            });
+        });
+
+        function actualizarCarrito() {
+            totalItemsElement.innerText = carrito.reduce((total, item) => total + item.cantidad, 0);
+            const listaCarrito = document.getElementById('lista-carrito');
+            listaCarrito.innerHTML = '';
+
+            if (carrito.length === 0) {
+                listaCarrito.innerHTML = '<tr><td colspan="5">No hay productos en el carrito.</td></tr>';
+                return;
+            }
+
+            carrito.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><img src="${item.imagen}" width="100" alt="${item.nombre}"></td>
+                    <td>${item.nombre}</td>
+                    <td>$${item.precio.toFixed(2)}</td>
+                    <td>${item.cantidad}</td>
+                    <td><a href="pago.html">HACER COMPRA</a></td>
+                    
+                    
+                `;
+                listaCarrito.appendChild(row);
+            });
+        }
+
+        document.getElementById('vaciar-carrito').addEventListener('click', () => {
+            carrito.length = 0;
+            actualizarCarrito();
+        });
+
+        document.querySelector('.modal-close').addEventListener('click', () => {
+            document.getElementById('modal-carrito').style.display = 'none';
+        });
+
+        document.getElementById('carrito').addEventListener('click', () => {
+            const modal = document.getElementById('modal-carrito');
+            modal.style.display = 'flex';
+        });
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal-carrito');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        document.getElementById('ver-mas').addEventListener('click', () => {
+            if (!mostrarMas) {
+                productosAdicionales.classList.add('show'); // Muestra la sección
+                mostrarMas = true; // Evitar agregar más productos múltiples veces
+                setTimeout(() => {
+                    productosAdicionales.style.opacity = '1'; // Hacer visible
+                }, 10); // Retraso para permitir la transición
+            }
+        });
+    </script>
+</body>
+</html>
